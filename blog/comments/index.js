@@ -24,7 +24,7 @@ app.post('/posts/:id/comments', (req, res) => {
 
     commentsByPostId[req.params.id] = comments;
 
-    axios.post(`http://localhost:4005/events`, {
+    axios.post(`http://event-bus-srv:4005/events`, {
         type: 'CommentCreated',
         data: {
             id: commentId,
