@@ -10,7 +10,9 @@ const router = express.Router();
 router.post(
     '/api/users/signup',
     [
-        body('email').isEmail().withMessage('Email must be valid'),
+        body('email')
+            .isEmail()
+            .withMessage('Email must be valid'),
         body('password')
             .trim()
             .isLength({ min: 4, max: 20 })
@@ -18,7 +20,6 @@ router.post(
     ],
     validateRequest,
     async (req: Request, res: Response) => {
-
         const { email, password } = req.body;
         const existingUser = await User.findOne({ email });
 
@@ -42,6 +43,9 @@ router.post(
         req.session = {
             jwt: userJwt,
         };
+        res.cookie('jwt',  userJwt, {
+            maxAge: 24 * 60 * 1000,
+        });
 
         res.status(201).send(user);
     }
