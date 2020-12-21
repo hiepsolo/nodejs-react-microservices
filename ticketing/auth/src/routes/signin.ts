@@ -45,6 +45,9 @@ router.post(
         req.session = {
             jwt: userJwt,
         };
+        res.cookie('jwt',  userJwt, {
+            maxAge: 24 * 60 * 1000,
+        });
 
         res.status(200).send(existingUser);
     }

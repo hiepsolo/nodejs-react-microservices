@@ -20,17 +20,19 @@ export const currentUser = (
     res: Response,
     next: NextFunction
 ) => {
-    const cookies = cookie.parse(req.headers.cookie as string);
-    if (!cookies?.jwt) {
-        return next();
-    }
-
     try {
-        const payload = jwt.verify(
-            cookies.jwt,
-            process.env.JWT_KEY!
-        ) as UserPayload;
-        req.currentUser = payload;
+        if (req.headers.cookie) {
+            const cookies = cookie.parse(req.headers.cookie as string);
+            if (!cookies?.jwt) {
+                return next();
+            }
+            const payload = jwt.verify(
+                cookies.jwt,
+                process.env.JWT_KEY!
+            ) as UserPayload;
+            req.currentUser = payload;
+        }
+
     } catch (err) {
     }
 
