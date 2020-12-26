@@ -1,0 +1,13 @@
+{
+    "name": "ticketing",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "p8222": "kubectl port-forward nats-depl-5ccb4d4f6d-p8qtd 8222:8222",
+        "p4222": "kubectl port-forward nats-depl-5ccb4d4f6d-p8qtd 4222:4222"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
