@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import {OrderStatus} from '@epitickets/common';
 import { TicketDoc } from './ticket';
+import {updateIfCurrentPlugin} from 'mongoose-update-if-current';
 
 export {OrderStatus};
 
@@ -13,6 +14,7 @@ interface OrderAttr {
 
 interface OrderDoc extends mongoose.Document {
     userId: string;
+    version: number;
     status: OrderStatus;
     expiresAt: Date;
     ticket: TicketDoc;
@@ -47,7 +49,10 @@ const orderSchema = new mongoose.Schema({
             delete ret._id;
         }
     }
-})
+});
+
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = (attrs: OrderAttr) => {
     return new Order(attrs);
