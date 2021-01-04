@@ -56,5 +56,3 @@ it('returns an error if one user tries to fetch another users order', async () =
         .send()
         .expect(401);
 });
-
-it.todo('emits a order cancelled event');
