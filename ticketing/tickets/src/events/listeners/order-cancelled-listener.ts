@@ -1,14 +1,14 @@
-import { Listener, OrderCreatedEvent, Subjects } from '@epitickets/common';
+import { Listener, OrderCancelledEvent, Subjects } from '@epitickets/common';
 import { Message } from 'node-nats-streaming';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
 import { queueGroupName } from './queue-group-name';
 
-export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
-    subject: Subjects.OrderCreated = Subjects.OrderCreated;
+export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
+    subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
     queueGroupName = queueGroupName;
 
-    async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
+    async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
         // Find the ticket that the order is reserving
         const ticket = await Ticket.findById(data.ticket.id);
 
@@ -18,9 +18,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
         }
 
         // Mark the ticket as being reserved by setting its orderId property
-        ticket.set({orderId: data.id});
-
-        // Save the ticket
+        ticket.set({orderId: undefined});
         await ticket.save();
         await new TicketUpdatedPublisher(this.client).publish({
             id: ticket.id!,
