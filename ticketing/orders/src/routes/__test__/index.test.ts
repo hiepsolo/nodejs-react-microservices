@@ -1,17 +1,19 @@
-import request from 'supertest'
+import request from 'supertest';
 import { app } from '../../app';
 import { Order } from '../../models/order';
-import { Ticket } from '../../models/ticket'
+import { Ticket } from '../../models/ticket';
+import mongoose from 'mongoose';
 
 const buildTicket = async () => {
     const ticket = Ticket.build({
+        id: mongoose.Types.ObjectId().toHexString(),
         title: 'concert',
-        price: 20
+        price: 20,
     });
     await ticket.save();
 
     return ticket;
-}
+};
 
 it('fetches orders for an particular user', async () => {
     // Create three tickets
@@ -27,7 +29,7 @@ it('fetches orders for an particular user', async () => {
         .post('/api/orders')
         .set('Cookie', userOne)
         .send({
-            ticketId: ticketOne.id
+            ticketId: ticketOne.id,
         })
         .expect(201);
 
@@ -36,14 +38,14 @@ it('fetches orders for an particular user', async () => {
         .post('/api/orders')
         .set('Cookie', userTwo)
         .send({
-            ticketId: ticketTwo.id
+            ticketId: ticketTwo.id,
         })
         .expect(201);
     await request(app)
         .post('/api/orders')
         .set('Cookie', userTwo)
         .send({
-            ticketId: ticketThree.id
+            ticketId: ticketThree.id,
         })
         .expect(201);
 
@@ -55,4 +57,4 @@ it('fetches orders for an particular user', async () => {
 
     // Make sure we only got the orders for User #2
     expect(response.body.length).toEqual(2);
-})
+});
