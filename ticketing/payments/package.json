@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "ts-node-dev --poll src/index.ts",
-        "test": "jest --watchAll --no-cache"
+        "test": "jest --watchAll --no-cache",
+        "stripe": "kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_pNhJ1UMlAlmhMeYbkjFfzs63005lVtBzQx"
     },
     "jest": {
         "preset": "ts-jest",
@@ -27,6 +28,7 @@
         "mongoose": "^5.11.8",
         "mongoose-update-if-current": "^1.4.0",
         "node-nats-streaming": "^0.3.2",
+        "stripe": "^8.129.0",
         "ts-node-dev": "^1.1.1",
         "typescript": "^4.1.3"
     },
