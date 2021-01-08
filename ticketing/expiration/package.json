@@ -18,7 +18,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@epitickets/common": "^1.0.27",
+        "@epitickets/common": "^1.0.37",
         "bull": "^3.20.0",
         "node-nats-streaming": "^0.3.2",
         "ts-node-dev": "^1.1.1",
