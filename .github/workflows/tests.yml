@@ -5,7 +5,9 @@ name: tests
 # Controls when the action will run. 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+      - dev
 jobs:
   # This workflow contains a single job called "build"
   build:
