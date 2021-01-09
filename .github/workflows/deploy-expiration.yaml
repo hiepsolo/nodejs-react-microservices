@@ -1,0 +1,27 @@
+name: deploy-expiration
+
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - 'ticketing/expiration/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd ticketing/expiration && docker build -t hoanghiep2004hy/expiration .
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push hoanghiep2004hy/expiration
+      - name: Connect to Linode k8s
+        uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      - uses: actions-hub/kubectl@master
+        with:
+          args: rollout restart deployment expiration-depl
