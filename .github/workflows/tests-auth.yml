@@ -8,6 +8,8 @@ on:
     branches:
       - master
       - dev
+    paths:
+        - 'ticketing/auth/**'
 jobs:
   # This workflow contains a single job called "build"
   build:
