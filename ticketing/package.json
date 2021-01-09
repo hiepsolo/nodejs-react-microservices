@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "p8222": "kubectl port-forward nats-depl-5ccb4d4f6d-p8qtd 8222:8222",
-        "p4222": "kubectl port-forward nats-depl-5ccb4d4f6d-p8qtd 4222:4222"
+        "p4222": "kubectl port-forward nats-depl-5ccb4d4f6d-p8qtd 4222:4222",
+        "apply-ingress-nginx": "kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml"
     },
     "keywords": [],
     "author": "",
