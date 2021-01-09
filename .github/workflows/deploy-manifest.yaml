@@ -19,3 +19,6 @@ jobs:
       - uses: actions-hub/kubectl@master
         with:
           args: apply -f ticketing/infra/k8s
+      - uses: actions-hub/kubectl@master
+        with:
+          args: apply -f ticketing/infra/k8s-prod
