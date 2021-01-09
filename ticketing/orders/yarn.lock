@@ -278,10 +278,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@epitickets/common@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/@epitickets/common/-/common-1.0.27.tgz#6df5da0be04796d978b5df845ba26073ae5616ed"
-  integrity sha512-cC9606yTm9EGFDZ0EsEHspIZ/mBEAwjNvfnSwxo5Ves7j39ToIO4HLKR1BVhJlsjXmUm1RBmJorN59DxT/v2AA==
+"@epitickets/common@^1.0.37":
+  version "1.0.38"
+  resolved "https://registry.yarnpkg.com/@epitickets/common/-/common-1.0.38.tgz#ee9d6dec4549e33fd5c5c18ad9338a1b5df571a4"
+  integrity sha512-Vtrdg3EOQ7ZZEP3WMa+hw9Tb2mxTK0nGEdwYLZOt72V2miueTXlBhxw0s6c9oihE/TxF3LUhwB8G+FqC9Jqh8Q==
   dependencies:
     "@types/cookie-session" "^2.0.42"
     "@types/express" "^4.17.9"

@@ -6,6 +6,7 @@
     "scripts": {
         "start": "ts-node-dev --poll src/index.ts",
         "test": "jest --watchAll --no-cache",
+        "test:ci": "jest",
         "stripe": "kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_pNhJ1UMlAlmhMeYbkjFfzs63005lVtBzQx"
     },
     "jest": {
