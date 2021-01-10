@@ -4,9 +4,12 @@ const buildClient = ({ req }) => {
     if (typeof window === 'undefined') {
         // On the server
 
+        // Dev Local
+        // baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local'
+
         return axios.create({
             baseURL:
-                'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+                'http://www.endofeighty.com/',
             headers: req.headers,
         });
     } else {
